@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>폼 테스트</title>
+</head>
+<body>
+	
+	<form action = "FormServlet" method="post">
+	<!-- method="post"는 숨겨진채로 정보가 전송되는 형태 -->
+		아이디 : <input type="text" name="mid">
+		<!-- name="mid" 파라미터이름 : 입력값 전송시 사용할 변수명 -->
+		<br>
+		좋아하는 가수를 고르시오:
+		<input type="checkbox" name="singer" value="iu">아이유
+		<input type="checkbox" name="singer" value="ive">아이브
+		<input type="checkbox" name="singer" value="newjeans">뉴진스
+		<br>
+		<input type="submit" value="전송">
+	</form>
+	
+</body>
+</html>
