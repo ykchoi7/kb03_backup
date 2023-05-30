@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="css/nav.css">
+  <link rel="stylesheet" href="css/article.css">  
+  <link rel="stylesheet" href="css/footer.css"> 
+  <style>
+
+    #login {
+      margin-top: 5px;
+      padding: 20px 0px;
+    }
+
+    #login h1 {
+      padding: 5px;
+      text-align: center;
+    }
+
+    #login form{
+      display: block;
+      width: 100%;
+      height: 200px;
+      border: 1px solid lightgrey;
+      padding: 40px;
+    }
+
+    #login .form-item{
+      margin-bottom: 10px;
+    }
+
+    #login .form-item label{
+      display: inline-block;
+      width: 100px;
+      font-size: 18px;
+    }
+
+    #login .form-item input{
+      display: inline-block;
+      width: 200px;
+      font-size: 18px;
+    }
+
+    #login #btn{
+      margin-top: 10px;
+      padding: 5px;
+      float: right;
+      width: 80px;
+      font-size: 18px;
+    }  
+    
+	footer {
+	  background-color:LightGray;
+	  border-top: 1px solid lightgray;
+	  margin-top: 10px;
+	  padding: 10px;
+	}
+	
+	footer ul{
+	  list-style-type: none;
+	}
+	footer ul li{
+	  padding: 5px;
+	  text-align: right;
+	}
+  </style>
+  <title>IT's KB - login</title>
+  	<script type="text/javascript">
+	function check_form() {
+		var email = document.querySelector("#email")
+		var pwd = document.querySelector("#pwd")
+		if (email.value.trim().length != 0 && pwd.value.trim().length != 0) {
+			alert("입력유무체크 완료")
+			return false; //전송시키면 안되기 때문에 return false 꼭 기입해주기!
+		}
+		
+		var email = document.querySelector("#email")
+		if (email.value.trim().length == 0) {
+			alert("이메일을 입력하세요")
+			return false;
+		}
+		
+		var pwd = document.querySelector("#pwd")
+		if (pwd.value.trim().length == 0) {
+			alert("비밀번호를 입력하세요")
+			return false;
+		}
+		
+		return true;
+	}
+	</script>
+</head>
+<body>
+  <div id="container">
+    <nav>
+      <ul>
+        <li class="nav-item logo"><img src="logo.jpg" alt=""></li>
+        <li class="nav-item"><a href="personal.html">개인</a></li>
+        <li class="nav-item"><a href="busines.html">기업</a></li>
+        <li class="nav-item">로그인</li>
+        <li class="nav-item">회원가입</li>
+      </ul>
+    </nav>
+    <div id="banner">지금 당신의 행복! IT's KB Life!</div>
+    <div id="login">
+      <h1>Login</h1>
+      
+      	<form id = "login_form"
+		onsubmit="return check_form();" 
+		action="./jsp/login.jsp" method="post">
+		
+		<div class="form-item">
+		<label for="email">이메일:</label> 
+		<input id="email" type="text" name="email">
+		</div>
+		<br>
+		<div class="form-item">
+		<label for="password">비밀번호:</label>
+		<input id="pwd" type="password" name="pwd">
+		</div>
+		<br>
+		<input id="btn" type="submit" value="로그인">
+		
+		</form>
+    </div>
+
+  
+     <footer>
+      <ul>
+        <li class="address">12345 address 1 address 2 address 3</li>
+        <li class="phone">02-0000-0000</li>
+      </ul>
+    </footer>
+   </div> 
+
+
+</body>
+</html>

@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>금광찾기 게임</title>
+<style type="text/css">
+	#wrapper { width:540px; margin:10px auto;}
+	#buttons > button { width:50px; height:50px; }
+</style>
+
+<script src="https://code.jquery.com/jquery-3.6.4.js" integrity="sha256-a9jBBRygX1Bh5lt8GZjXDzyOB+bWve9EiO7tROUtj/E=" crossorigin="anonymous"></script>
+<script type="text/javascript">
+
+	//버튼 글자 생성
+	var com_numx = Math.random()*10 + 1
+	com_numx = Math.floor(com_numx)
+	var com_numy = Math.random()*10 +1
+	com_numy = Math.floor(com_numy)
+	
+	//게임 초기화하는 함수 생성
+	function reset_game() {
+		com_numx = Math.random()*10 + 1
+		com_numx = Math.floor(com_numx)
+		com_numy = Math.random()*10 +1
+		com_numy = Math.floor(com_numy)
+		
+		$("#buttons > button").attr("disabled", false)
+	}
+	
+	//숫자 확인 함수
+	function check_num() {
+		var num = this.innerHTML
+		num = parseInt(num)  //문자를 숫자로 변환
+		var x = Math.floor(num/10) +1
+		var y = num%10 +1
+		
+		var dist = Math.sqrt((Math.pow(x-com_numx,2) + Math.pow(y-com_numy,2)))
+		dist = Math.round(dist)
+		
+		var msg = "";
+	
+		if (dist != 0)
+			msg = "틀렸습니다"
+		else {
+			msg = "정답입니다"
+			$("#result").append("<br> 금광 찾음")
+		}
+			
+		$("#result").html("[" + dist + "]" + msg)
+		$(this).attr("disabled", true)
+		
+		//정답일 경우 게임 초기화 + 메세지 띄우기 (마지막에서 추가해주어야한다!!)
+		if (dist == 0) {
+			reset_game(); //게임 초기화
+			$("#result").append("<br> 금광 찾음")
+		}
+			
+	return false;
+	}
+	
+	//금광 맞추기 - 이벤트 등록
+	$(function() {
+		//버튼 100개 생성, 추가
+		var buttons = $("#buttons")
+		for(let i=1; i<=100; i++) {
+			buttons.append("<button>"+i+"</button>")
+		}
+	
+		//버튼 100개에 클릭 이벤트 등록
+		$("#buttons > button").click(check_num)
+	})
+
+</script>
+</head>
+
+<body>
+
+	<div id = "wrapper"> <!-- 가운데정렬 맞춰주기 위한 div 태그 -->
+		<h1>금광찾기 게임</h1>
+		<p>금광을 찾아보세요</p>
+		<div id="result"></div>
+		<div id="buttons"></div>
+	</div>
+	
+	
+
+</body>
+</html>

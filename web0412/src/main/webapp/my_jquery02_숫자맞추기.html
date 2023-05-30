@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>숫자맞추기 게임</title>
+<style type="text/css">
+/*css는 보통 script 위에다 쓰기!!*/
+	#wrapper { width:400px; margin:10px auto;}
+
+</style>
+
+<script src="https://code.jquery.com/jquery-3.6.4.js" integrity="sha256-a9jBBRygX1Bh5lt8GZjXDzyOB+bWve9EiO7tROUtj/E=" crossorigin="anonymous"></script>
+<script type="text/javascript">
+
+//난수 생성(1~100)
+	var com_num = Math.random()*100 +1; //임의의 숫자 뽑기
+	com_num = Math.floor(com_num)  //소수 이하 버림
+	
+	//게임 초기화하는 함수 생성
+	function reset_game() {
+		com_num = Math.random()*100 +1; //var com_num이라고 하면 지역변수가 되기 때문에 새로운 숫자가 생성되지 않음
+										//함수 내에서는 그냥 com_num으로 해주어야 전역변수가 된다
+		com_num = Math.floor(com_num)
+	}
+
+//숫자 맞추기 - 이벤트 등록
+	$(function() {
+		$("#check_num").click(function() {
+			//입력값과 컴난수랑 비교
+			var num = $("#num").val()  //입력값은 문자형!
+			num = parseInt(num)  //문자를 숫자로 변환
+			var msg = "";
+			if (com_num < num)
+				msg = "낮춰주세요"
+				else if (com_num > num)
+					msg = "높여주세요"
+				else {
+					msg = "정답입니다"
+				}
+			
+				$("#result").html(num + " : " + msg)  //$가 붙으면 jquery이기 때문에 .innerHTML 사용 불가 -> html()
+				//입력숫자 삭제
+				$("#num").val("")
+				
+				//정답일 경우 게임 초기화 + 메세지 띄우기 (마지막에서 추가해주어야한다!!)
+				if (com_num == num) {
+					reset_game(); //게임 초기화
+					$("#result").append("<br> 게임이 초기화 되었습니다.")
+				}
+			return false;  //전송 기능 정지
+		})		
+	})
+	
+//기본 예제 - 이벤트 등록
+	/* $(function(){  //HTML코드가 로딩될 때까지 실행 지연
+		alert($("p").css("color"));
+		$("p").css("color", "red"); //페이지 내에 있는 모든 p태그에 적용됨
+		$("p").css({  //여러 개의 css값을 설정할 때
+			"background-color" : "cyan",
+			"border": "1px red dashed"
+		});
+		$("#check_num").click()
+	})   */
+
+</script>
+</head>
+<body>
+
+	<div id = "wrapper"> <!-- 가운데정렬 맞춰주기 위한 div 태그 -->
+		<h1>숫자맞추기 게임</h1>
+		<p>1~100 사이 컴퓨터가 정한 숫자를 맞춰보세요~</p>
+		<form action="" onsubmit="return false;">
+		
+			<label>
+				숫자입력: <input id="num" type="number">
+				<button id="check_num">정답확인</button>
+			</label>
+		
+		</form>
+		<div id="result"></div>
+	</div>
+	
+</body>
+</html>

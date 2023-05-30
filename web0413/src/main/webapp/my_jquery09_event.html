@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<style>
+  a {margin:5px; padding:5px; border:3px solid black}
+</style>
+<script src="https://code.jquery.com/jquery-3.6.4.js" integrity="sha256-a9jBBRygX1Bh5lt8GZjXDzyOB+bWve9EiO7tROUtj/E=" crossorigin="anonymous"></script>
+<script>
+  $(document).ready(function() {
+    $("a").click(function(event) {
+      $(this).css("background", "blue");
+      alert("이동 막기");
+      //return false; //기본 동작 취소
+      event.preventDefault(); //기본 동작(구글로 이동하는 행위)이 작동되지 않도록
+      event.stopPropagation(); //이벤트 전달을 안하기 때문에 연쇄작동 click이벤트로 발생하지 않음
+    });
+    $("h1").bind("click", function() {
+      alert("연쇄 작동");
+    });
+  });
+</script>
+</head>
+
+<body>
+  <h1>
+    <a href="http://www.google.com">구글로 이동</a>
+  </h1>
+</body>
+
+</html>

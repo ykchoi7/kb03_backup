@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<!-- 설문 폼을 작성하는 것을 form 태그로 설정한다 -->
+	<!-- <form action = "./jsp/form1.jsp" method = "get">
+		이름 : <input type="text" name="nm"> -->
+
+	<form action = "./jsp/form1.jsp" method = "post">
+		<fieldset> <!-- 테두리를 만들어줌 -->
+			<legend> 개인정보 </legend> <!-- field set의 제목 (legend 범례) -->
+		<label>이름 : <input type="text" name="nm" size="3" value="ABC" required></label>
+		<label>이름 : <input type="search" name="nm" size="3" value="ABC"> <br></label>
+		<!--	label은 이름 부분과 옆에 빈칸이 연동되어 이름 클릭하면 빈칸에 자동으로 입력하게 뜬다 
+				size는 빈칸이 3개 글자 정도의 크기로 설정됨 (입력은 가능) 
+				value는 기본적으로 ABC가 타입된 채로 보여진다
+				required라는 속성 - 필수로 넣어야하는 값	-->
+		<label>비밀번호 :</label> <input type="password" name="pwd">
+		<br>
+		성별은?
+		<input type="radio" name="gender" value="male"> 남
+		<input type="radio" name="gender" value="female"> 여
+		<br>
+		나이는?
+		<input type="number" name="age" value="30" readonly="readonly" placeholder="나이를 입력하세요">
+		<input type="hidden" name="aa" value="100">
+		<!-- placeholder 흐릿하게 문구가 등장해서 어떤 걸 적어야하는지 알려줌 -->
+		<!-- 값이 여러개일 때는 꼭 전송하기 버튼이 있어야 한다 
+			read only 소리가 안난다고 의심-->
+		
+		<br>
+		<textarea rows="3" cols="50" name="intro"></textarea>
+		
+		<br>
+		<input type="submit" value="전송">
+		</fieldset>
+	</form>
+	
+	<!-- post는 용량이 커서 미디어 등이 들어갈 수 있다 / get은 2000자 정도의 제약이 있음 -->
+</body>
+</html>

@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<script src="https://code.jquery.com/jquery-3.6.4.js" integrity="sha256-a9jBBRygX1Bh5lt8GZjXDzyOB+bWve9EiO7tROUtj/E=" crossorigin="anonymous"></script>
+<script type="text/javascript">
+	setInterval(function(){
+		var val = $("select > option:selected").val()
+		console.log(val)
+	}, 1000) //선택한 값을 1초마다 실행됨
+</script>
+<title>my_jquery02.html</title>
+</head>
+<body>
+
+	<h1>요즘 좋은 가수</h1>
+	<select>
+	 	<option>뉴진스</option>
+		<option>아이유</option>
+		<option>아이브</option>
+		<option>Fifty Fifty</option>
+	</select>
+	
+</body>
+</html>

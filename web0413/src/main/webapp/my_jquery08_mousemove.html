@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<script src="https://code.jquery.com/jquery-3.6.4.js" integrity="sha256-a9jBBRygX1Bh5lt8GZjXDzyOB+bWve9EiO7tROUtj/E=" crossorigin="anonymous"></script>
+<script type="text/javascript">
+$(function() {
+	$("body").mousemove(function(e) { //e -> 파라미터값 부여해줌으로써 이벤트가 실행됨
+		var msg = e.pageX+" , "+e.pageY
+		$("#result").html(msg)
+	})
+})
+</script>
+<title>my_jquery08_mousemove.html</title>
+</head>
+<body>
+	<h1>header</h1>
+	<h1>header1</h1>
+	<h1>header2</h1>
+	<div id="result"></div>
+</body>
+</html>

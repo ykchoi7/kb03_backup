@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Calc.html</title>
+</head>
+<body>
+	<h1>간단계산기</h1>
+	<form action="my_calc">
+		<!-- name이 빠지면 전송이 안되므로 꼭 넣어주기!! -->
+		<input type="number" name="num1" size="5">
+		<select name="opr">
+			<option>+</option>
+			<option>-</option>
+			<option>*</option>
+			<option>/</option>
+			<option>%</option>
+		</select>
+		<input type="number" name="num2" size="5">
+		<br>
+		<input type="submit" value="계산하기">
+		<!-- my_calc?num1=3&opr=%2B&num2=4 가 주소창에 찍힘 -->
+	</form>
+</body>
+</html>

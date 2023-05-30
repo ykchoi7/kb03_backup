@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>my_js5_object</title>
+<script type="text/javascript">
+	var arr = [1,3,5]
+	var arr2 = new Array(1,3,5);
+	console.log("길이는" + arr.length);
+	
+	//Math.random()을 사용하면 기본적으로 0~1 사이의 무작위 숫자가 출력됨
+	//그래서 100을 곱해야 1~99 정도의 실수를 뽑을 수 있고 소수점 이하 수를 버려야 정수로 출력 가능
+	
+	//로또 만들기 (1~45 숫자 6개 뽑기)
+	function make_lotto() {
+		var arr = [] //익명 배열로 만들기
+		for (let i=0; i<6; i++) {
+			var r = Math.random()*45 + 1 //이렇게 계산해야 1~45까지의 수가 출력
+			r = Math.floor(r)	//소수 이하 버림
+			arr.push(r)
+			console.log(r)
+		}
+	}
+	
+	//make_lotto()
+	
+	//숫자 중복 배제
+	function make_lotto2() {
+		var nums = [] //1~45를 미리 저장
+		for (let i=1; i<=45; i++) {
+			nums.push(i)
+		}
+		var arr = []
+		for (let i=0; i< 6; i++) {
+			console.log("nums.length=" + nums.length)
+			//nums의 길이 내에서 임의의 순번 삭제, 저장
+			var r = Math.random()*nums.length
+			r = Math.floor(r)
+			arr.push( nums.splice(r,1) ) //r번째에서 첫번째 숫자를 삭제
+			console.log("lotto nums = " + nums.splice(r,1))
+		}
+	}
+	make_lotto2();
+	
+	//date 객체 *중요*
+	alert ( new Date() )
+	
+	//alert가 없으면 확인 사항 없이 휙 링크로 이동 -> 추천하는 방식이 아니다
+	window.location = "https://www.naver.com"
+	
+</script>
+</head>
+<body>
+	
+</body>
+</html>

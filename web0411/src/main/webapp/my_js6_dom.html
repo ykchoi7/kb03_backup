@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>my_js6_dom</title>
+</head>
+<body>
+	
+	<button onclick="show_img()" id="ok">OK</button>
+	<button id="cancel">CANCEL</button>
+	<div id="result"></div>
+	
+<script type="text/javascript">
+	//innerText 프로퍼티 - 텍스트 내용을 표시
+	//innerHTML 프로퍼티 - HTML 태그까지 반영하여 표시
+	
+	function show_img() {
+		var r = document.querySelector("#result")
+		r.innerHTML +="<img src ='images/tangerines.jpg'>" //이미지 누적해서 출력-> += 사용
+	}
+
+	/* document.querySelector("#ok").onclick=function() {
+		var r = document.querySelector("#result")
+		r.innerHTML="<img src ='images/tangerines.jpg'>"
+	} */
+</script>
+
+</body>
+</html>

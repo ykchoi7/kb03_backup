@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<script src="https://code.jquery.com/jquery-3.6.4.js" integrity="sha256-a9jBBRygX1Bh5lt8GZjXDzyOB+bWve9EiO7tROUtj/E=" crossorigin="anonymous"></script>
+<script>
+	$(function() {
+		//$(document).ready(function(){ -> 함수 실행 지연시키는 부분
+		//	$("h1").addClass("red")
+		//})
+		
+		//add
+		$("button:contains(red)").click(function(){
+			$("ul").addClass("red")
+		})
+		$("button:contains(blue)").click(function(){
+			$("ul").addClass("blue_border")
+		})
+		//버튼을 클릭하면 효과가 적용되도록 하는 것
+		
+		//삭제
+		$("button:contains(remove red)").click(function(){
+			$("ul").removeClass("red")
+		})
+		$("button:contains(remove blue)").click(function(){
+			$("ul").removeClass("blue_border")
+		})
+	})
+</script>
+
+<style type="text/css">
+	.red{ color:red; }
+	.blue_border{ border: 1px solid black; }  
+</style>
+
+<title>my_jquery07_addClass.html</title>
+</head>
+
+<body>
+	<button>red style</button>
+	<button>blue border</button>
+	<button>remove red</button>
+	<button>remove blue border</button>
+
+	<div>
+		<ul>
+			<li><h1>Apple</h1></li>
+			<li>Cat</li>
+			<li>Bag</li>
+			<li>Dog</li>			
+		</ul>
+		<h1>Child H1</h1>
+	</div>
+</body>
+
+</html>

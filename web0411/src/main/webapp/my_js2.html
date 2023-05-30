@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>my_js2</title>
+<script type="text/javascript">
+	a = 100		//전역변수
+	var b = 200	//지역변수 (함수 내 선언일 경우), 함수 밖 선언일 경우 전역변수
+	let c = 300	//블록변수 (블록 내에서만 사용가능)
+	console.log(a)
+	console.log(b)
+	console.log(c)
+</script>
+
+<script type="text/javascript">
+	function gugudan(dan) { //dan-지역변수
+		mydan = dan  //var mydan으로 하면 지역변수가 되기 때문에 오류 발생 -> var 없애고 전역변수로 사용
+					//그러나 되도록이면 전역변수가 아닌 지역변수를 사용해라!
+		for (i=1; i<=9; i++) {
+			console.log(mydan*i)
+		}
+	}
+	/* gugudan(3) //호출(실행)
+	console.log(mydan) */
+	
+	function hoi() {
+		var num = 100
+		console.log(num)
+	}
+	hoi() //undefined가 뜬다 -> 초기화가 안된 값이라는 뜻
+		  //변수 선언은 뒤에서 하지 말고 앞에 진행하기! (var num = 100)
+	
+	var my_plus = function(a,b) {
+		return a+b
+	}
+	console.log( my_plus ) //함수식 자체가 출력
+	console.log( console.log )
+	console.log( my_plus(1,2) ) //1+2한 답이 출력
+	
+</script>
+</head>
+<body>
+	
+</body>
+</html>

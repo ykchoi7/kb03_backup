@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>my_js3</title>
+<script type="text/javascript">
+	function changeBg(color) {
+		var result = document.querySelector("#result")
+		//querySelector - 선택자를 찾는것
+		//#result - id가 result인 선택자를 찾아라
+		result.style.background = color;
+	}
+</script>
+</head>
+<body>
+	<h1>이벤트</h1>
+	<!-- 이벤트 핸들러가 false를 반환하면 요소의 기본동작(웹페이지로 이동하는 동작)이 취소된다 -->
+	<a onmouseover="changeBg('green');" onmouseout="changeBg('white'); return false;" href="#">Green</a>
+	<a onmouseover="changeBg('orange');" onmouseout="changeBg('white'); return false;" href="#">Orange</a>
+	<a onmouseover="changeBg('purple');" onmouseout="changeBg('white'); return false;" href="#">Purple</a>
+	<!-- 동작은 onclick, onmouseover, onmouseout 등 다양 (p.541 참조) -->
+
+	<button onclick="changeBg('yellow');">OK</button>
+	<button>CANCEL</button>
+
+	<!-- result를 보여주는 부분의 size를 설정해줌 -->	
+	<div id="result" style="width:300px; height:300px;"> </div>
+</body>
+</html>

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript">
+	function check_form() {
+		/* var f = document.querySelector("#login_form") */
+		var mid = document.querySelector("#mid")
+		if (mid.value.trim().length == 0) { //id 입력이 안됐으면
+			//trim() - 앞뒤의 공백을 없애줌, 공백을 넣었을 때 입력으로 읽지 않도록 하는 기능
+			alert("아이디를 입력하세요")
+			return false; //전송시키면 안되기 때문에 return false 꼭 기입해주기!
+		}
+
+		var pwd = document.querySelector("#pwd")
+		if (pwd.value.trim().length == 0) {
+			alert("비밀번호를 입력하세요")
+			return false; //전송시키면 안되기 때문에 return false 꼭 기입해주기!
+		}
+		
+		return true;
+	}
+</script>
+</head>
+<body>
+	
+	<h1>폼 이벤트</h1>
+	<h2>로 그 인</h2>
+	<form id = "login_form"
+		onsubmit="return check_form();" 
+		action="./jsp/login.jsp" method="post">
+	
+	로그인 아이디: <input id="mid" type="text" name="mid">
+	<br>
+	비밀번호: <input id="pwd" type="password" name="pwd">
+	<br><br>
+	<input type="submit" value="로그인">
+	
+	</form>
+	
+</body>
+</html>

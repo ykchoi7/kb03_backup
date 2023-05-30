@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<script src="https://code.jquery.com/jquery-3.6.4.js" integrity="sha256-a9jBBRygX1Bh5lt8GZjXDzyOB+bWve9EiO7tROUtj/E=" crossorigin="anonymous"></script>
+<script type="text/javascript">
+$(function(){
+	$("#all_check").change(function(){
+		//disabled, selected, checked 속성은 prop() 사용 권장
+		$("#check_item>input").prop("checked", this.checked)
+	})
+	
+	$("#btnTotal").click(function(){
+		$("#q1, #q2").on('change', function() {
+			var p1 = (3000000*$("#q1").val())
+			var p2 = (1000000*$("#q2").val())
+			alert(p1+p2);
+			$("#totalPrice").append((p1+p2)+"원");
+		})
+	})
+	
+	/* 	var v1 = $("#v1").val()
+		var v2 = $("#v2").val()
+		var q1 = $("#q1").val()
+		var q2 = $("#q2").val()
+		var result = Number(v1)*Number(q1) + Number(v2)*Number(q2)
+		$("#result").val(result)
+	 */
+	 
+	/* $("#quantity").change(function(){
+		var v1 = $("#v1").val()
+		var v2 = $("#v2").val()
+		var count = $(this).val()
+		var total = Number(value) * Number(count)
+		$("#total").text(total)
+	})
+	
+	$("#btnTotal").click(function(){
+		let total = 0;
+		$("input:checkbox:checked").each(function(index,item){
+			total = total + Number(item.value)
+		})
+		$("#totalPrice").text(total);
+	}) */
+	
+})
+</script>
+
+<title>my_jquery11_checkbox2.html</title>
+</head>
+
+<body>
+	<input type = "checkbox" id="all_check">
+	<label>All</label>
+	
+	<table>
+	  <tr>
+	    <th>선택</th>
+	    <th>제품명</th>
+	    <th>가격</th>
+	    <th>수량</th>
+	  </tr>
+	  <tr>
+	    <td><input type="checkbox"></td>
+        <td>냉장고</td>
+        <td id="v1">3,000,000</td>
+        <td><input type="number" id="q1" value="1"></td>
+      </tr>
+      <tr>
+        <td><input type="checkbox"></td>
+        <td>세탁기</td>
+        <td id="v2">1,000,000</td>
+        <td><input type="number" id="q2" value="1"></td>
+      </tr>
+      <!-- <tr>
+      	<td>총액</td>
+      	<td colspan="3" id="total"></td>
+      	<td><input type="number" ></td>
+      </tr> -->
+	</table>
+	
+	<!-- 총합 구하기 -->
+	<button id="btnTotal">총합 구하기</button>
+	총합 : <span id="totalPrice"></span>
+	 
+</body>
+</html>

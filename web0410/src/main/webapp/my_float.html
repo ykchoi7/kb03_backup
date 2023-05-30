@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>my float</title>
+<style type="text/css">
+	/* 좌우배치를 하기 위한 방법 - float */
+	h1 {border: 1px solid black;}
+	.f1{width: 100px; height: 70px; background: yellow;}  
+	.f2{width: 700px; height: 70px; background: green;}  
+	.f1{float: left;}
+	.f2{float: left;}
+	.f3{clear: both;} /* 왼쪽,오른쪽 다 겹치지 않기 위해 딸려서 올라가지 않도록 위치 그대로 유지 */ 
+</style>
+</head>
+<body>
+	<h1 class="f1">Float 1</h1>
+	<h1 class="f2">Float 2</h1>
+	<h1 class="f3">Float 3</h1>
+</body>
+</html>

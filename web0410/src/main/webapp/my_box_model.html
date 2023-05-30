@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style type="text/css">
+	h1 {border: 3px solid black;}
+	span {margin: 10px 10px 10px 10px;} /*상 우 하 좌*/
+	span {margin: 10px 10px 10px;} /*상 좌우 하*/
+	span {margin: 10px 10px;} /*상하 좌우*/
+	span {margin: 10px;} /* 모든 방향 */
+	h1 {
+		width: 200px; 
+		height: 200px; 
+		line-height: 200px; 
+		text-align: center; 
+		vertical-align: middle; 
+		border-radius: 30px;
+		margin: 100px auto; /*페이지에서 가운데 정렬*/
+	}  
+	/* width의 절반 크기만큼 border-radius를 설정하면 원이 그려짐, 
+	line-height를 지정해줘야 vertical align이 먹힌다 */ 
+</style>
+</head>
+<body>
+	<!-- h1태그에는 기본적으로 margin이 있지만 span태그에는 margin이 없다 -> 설정필요 -->
+	<h1>박 스 모 델</h1>
+	<h1>박 스 모 델</h1>
+	<h1>박 스 모 델</h1>
+	<!-- h1의 상하 마진은 큰 쪽으로 겹치게 됨 -->
+	<!-- span태그는 위아래 margin이 먹지 않는다, 좌우는 겹치지 않고 마진 생김 -->
+	<span>인 라 인 타 입</span>
+	<span>인 라 인 타 입</span>
+	<span>인 라 인 타 입</span>
+</body>
+</html>

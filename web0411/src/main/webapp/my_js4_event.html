@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>my_js4</title>
+	<!-- script가 여기에 있으면 밑에 새롭게 생성되는 태그들을 찾을 수 없기 때문에 무용지물이 된다 (null로 출력됨) 
+	=> body의 맨 밑으로 보내주기 -->
+	
+	<script type="text/javascript">
+	
+	function changeColor() {
+		document.querySelector("#result").style.background = "yellow"
+	}
+	
+	//위쪽에 쓰기 위해서는 지연 코드를 추가해야한다
+	window.onload = function() { //익명함수 사용
+		//웹브라우저가 웹페이지를 모두 로딩하면 실행하는 함수
+		var btn = document.querySelector("#ok_btn") //태그검색
+		btn.onclick = changeColor;
+	}
+	
+	</script>
+</head>
+<body>
+
+	<h1>이벤트</h1>
+	<!-- 태그마다 이벤트 핸들러를 등록하면 비효율적! -->
+	
+	<a href="#">Green</a>
+	<a href="#">Orange</a>
+	<a href="#">Purple</a>
+
+	<button id="ok_btn">OK</button>
+	<button id="cancel_btn">CANCEL</button>
+
+	<!-- result를 보여주는 부분의 size를 설정해줌 -->	
+	<div id="result" style="width:300px; height:300px;"> </div>
+	
+	<!-- <script type="text/javascript">
+	var btn = document.querySelector("#ok_btn") //태그검색
+	console.log(btn)
+	</script> -->
+	
+</body>
+</html>

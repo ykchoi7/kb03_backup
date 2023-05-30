@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>css1</title>
+<style>
+	/* *{border: 1px solid gray; margin: 0;} */
+	/* 2020-03-03: 홍길동 작성 */
+	
+	/* 태그 선택자 */
+	h1{color:blue;}
+	
+	/* class 선택자 - body에서 class를 사용해야만 표시가 됨*/
+	.underline{ text-decoration: underline; }
+	
+	/* id선택자 : id="myid" */
+	#myid{ border: 3px dotted red; }
+	#myid{ border-style: double; }
+	
+</style>
+<style>
+	/* 나중 것이 적용되기 때문에 style태그를 두개 만들어서 새로운 스타일 부여*/
+	h1{color:purple;}
+</style>
+<link rel = "stylesheet" href="./css/my_css1.css">
+</head>
+<body>
+	<!-- 적용할 스타일을 적어주고, 여러개 지정 가능 -->
+	<header class="underline">HEADER</header>
+	<main>MAIN</main>
+	<aside>ASIDE</aside>
+	<footer id="myid">FOOTER</footer>
+	<h1 style="color: purple;">css 연습1</h1>  <!-- 인라인 형식 -->
+	<h1>css 연습1</h1>
+</body>
+</html>

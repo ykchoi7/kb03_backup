@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>my_js5_event</title>
+</head>
+<body>
+	<!-- OK를 누르면 1 증가, Cancel 누르면 1 감소시키고 싶다면 -->
+	
+	<button id="ok" data-num="1">OK</button>
+	<button id="cancel" data-num="-1">Cancel</button>
+	<div id="result"></div>
+	
+<script type="text/javascript">
+	
+	var count = 0
+	
+	function ok_click(event) {
+		var r = document.querySelector("#result")
+		//document.querySelector("#result").innerHTML = this.innerHTML;
+		//document.querySelector("#result") = event.target.innerHTML; //위에와 같은 의미 
+		var num = this.getAttribute("data-num")
+		num = parseInt(num) //문자를 숫자로 변환
+		num += num
+		r.innerHTML = this.innerHTML + num
+		this.setAttribute("data-num", num) //값 지정 
+		
+		//cancel 눌렀을 때 1씩 감소시키고 싶을 때 
+		count += num
+		r.innerHTML = this.innerHTML + count
+	}
+	
+	var buttons = document.querySelectorAll("button")
+	//alert( buttons.length ) //노드리스트
+	for (let i=0; i<buttons.length; i++) {
+		console.log( buttons[i].tagName )
+		console.log( buttons[i].getAttribute("id") )
+		buttons[i].onclick = ok_click
+	} //버튼이 2번 찍혔다고 console에 찍힘
+	
+	
+	/* function ok_click() {
+		document.querySelector("#result").innerHTML = "<img src='images/tangerines.jpg'>"
+	}
+	//innerText - img src 주소가 text 그대로 표시됨
+	//innerHTML - 이미지가 표시됨
+	var ok = document.querySelector("#ok")
+	alert(ok_click) //함수 전체가 알림창에 표시됨
+	//ok_click()으로 괄호 사용하면 안됨, 변수처럼 사용해주기!
+	ok.onclick = ok_click; */
+	/* ok.onclick = function() {
+		
+	} */
+</script>
+</body>
+</html>

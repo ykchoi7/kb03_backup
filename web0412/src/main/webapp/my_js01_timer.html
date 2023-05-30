@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>my_js01_timer.html</title>
+</head>
+<body>
+	<!-- timerid = window.setTimeout("코드"/함수, 지연시간(밀리초)) -->
+	<!-- window.clearTimeout(timerid) : 지연시간 이전에 실행시 취소 -->
+	<!-- timerid = window.setInterval("코드"/함수, 반복시간(밀리초)) -->
+	<!-- window.clearInterval(timerid) : 반복시간 이전에 실행시 취소 -->
+
+	<div id="result"></div>
+
+<script type="text/javascript">
+	/* var tid = setTimeout("alert(300)", 3000); //3초 후 한번 실행 (뒤에 단위가 밀리초)
+	clearTimeout(tid) //타이머 취소 */
+	
+	var num = 0;
+	function show_num() {
+		document.querySelector("#result").innerHTML = num++; //빈문자열 추가해서 num을 문자열로 전환시켜줌
+	}
+	var tid = setInterval("show_num()", 1000); //1초마다 실행 (뒤에 단위가 밀리초)
+	clearInterval(tid) //타이머 취소
+	
+</script>
+	
+</body>
+</html>

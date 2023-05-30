@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>숫자맞추기 게임</title>
+<style type="text/css">
+	/*css는 보통 script 위에다 쓰기!!*/
+	#wrapper { width:540px; margin:10px auto;}
+	#buttons > button { width:50px; height:50px; }  /*buttons 안에 button에 적용*/
+</style>
+
+<script src="https://code.jquery.com/jquery-3.6.4.js" integrity="sha256-a9jBBRygX1Bh5lt8GZjXDzyOB+bWve9EiO7tROUtj/E=" crossorigin="anonymous"></script>
+<script type="text/javascript">
+
+	//난수 생성(1~100)
+	var com_num = Math.random()*100 +1; //임의의 숫자 뽑기
+	com_num = Math.floor(com_num)  //소수 이하 버림
+	
+	//게임 초기화하는 함수 생성
+	function reset_game() {
+		com_num = Math.random()*100 +1;
+		com_num = Math.floor(com_num)
+		
+		//버튼을 초기화 - 두가지 방법
+		// (1)몽땅 지우고 새로 등록
+		$("#buttons > button").remove() //방법1. 버튼들을 하나씩 제거
+		//$("#buttons").empty() //방법2. buttons내 모든 노드들을 삭제
+		
+		//버튼 100개 생성, 추가
+		var buttons = $("#buttons")
+		for(let i=1; i<=100; i++) {
+			buttons.append("<button>"+i+"</button>")
+		}
+	
+		//버튼 100개에 클릭 이벤트 등록
+		$("#buttons > button").click(check_num)
+		
+		
+		// (2)전체 버튼을 다시 활성화
+		$("#buttons > button").attr("disabled", false)
+	}
+
+	
+	//숫자 체크하는 함수 생성
+	function check_num() {
+		//this -> 이벤트 소스를 의미 (이벤트를 발생시킨 태그)
+		//var num = alert(this.innerHTML) //javascript코드
+		//alert($(this).html()) - jquery코드로도 사용할 수 있음
+		
+		var num = this.innerHTML
+		num = parseInt(num)  //문자를 숫자로 변환
+		var msg = "";
+		if (com_num < num)
+			msg = "낮춰주세요"
+			else if (com_num > num)
+				msg = "높여주세요"
+			else {
+				msg = "정답입니다"
+			}
+			
+			$("#result").html(num + " : " + msg)
+			//누른 버튼은 비활성화 시키기 -> disabled=true
+			$(this).attr("disabled", true)
+			
+			//정답일 경우 게임 초기화 + 메세지 띄우기 (마지막에서 추가해주어야한다!!)
+			if (com_num == num) {
+				reset_game(); //게임 초기화
+				$("#result").append("<br> 게임이 초기화 되었습니다.")
+			}
+				
+		return false;
+	}
+
+	
+	//숫자 맞추기 - 이벤트 등록
+	$(function() {
+		//버튼 100개 생성, 추가
+		var buttons = $("#buttons")
+		for(let i=1; i<=100; i++) {
+			buttons.append("<button>"+i+"</button>")
+		}
+	
+		//버튼 100개에 클릭 이벤트 등록
+		$("#buttons > button").click(check_num)
+		//click 안에 function() 대신 check_num()을 쓰면 안되는 이유? return값이 없기 때문에 null이 리턴됨	
+	})
+	
+</script>
+</head>
+
+<body>
+
+	<div id = "wrapper"> <!-- 가운데정렬 맞춰주기 위한 div 태그 -->
+		<h1>숫자맞추기 게임 (버튼버전)</h1>
+		<p>1~100 사이 컴퓨터가 정한 숫자를 맞춰보세요~</p>
+		<div id="result"></div>
+		<div id="buttons"></div>
+	</div>
+	
+</body>
+
+</html>
