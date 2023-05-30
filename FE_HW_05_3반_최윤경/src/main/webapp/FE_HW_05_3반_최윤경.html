@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>지뢰 빨리 찾기 게임 만들기</title>
+<style type="text/css">
+	#wrapper { width:540px; margin:10px auto; }
+	#buttons > button { width:50px; height:50px; }
+</style>
+
+<script src="https://code.jquery.com/jquery-3.6.4.js" integrity="sha256-a9jBBRygX1Bh5lt8GZjXDzyOB+bWve9EiO7tROUtj/E=" crossorigin="anonymous"></script>
+<script type="text/javascript">
+	
+	//버튼 글자 생성
+
+	var com_numx = Math.random()*10 + 1
+	com_numx = Math.floor(com_numx)
+	var com_numy = Math.random()*10 +1
+	com_numy = Math.floor(com_numy)
+
+	
+	var gamepan = []; //여기에 랜덤으로 뽑은 지뢰를 저장
+	var x = [-1,0,1,0,-2,0,2,0];
+	var y = [0,-1,0,1,0,-2,0,2];
+	var count = 0;
+	var xy;
+	
+	
+	//지뢰 심기
+	for (var i=0; i<gamepan.length; i++) {
+		var normal = [];
+		gamepan.push(normal);
+		for (var j = 0; j < gamepan.length; j++) {
+			normal.push(CODE.NORMAL);
+		}
+	}
+	console.log(gamepan)
+	
+		//var x = gamepan[i] % 10
+		//var y = Math.floor(gamepan[i]/10)
+		//console.log(y,x)
+		
+	function check_num() {
+		//var x = new [];
+		//var y = new []; 
+		//var x = [-1,0,1,0,-2,0,2,0];
+		//var y = [0,-1,0,1,0,-2,0,2];
+		
+		arr[count] = [x,y];
+		xy.innerHTML = xy.innerHTML + "x좌표: " + arr[count][0] + ", y좌표: " + arr[count][1] + "<br>";
+		console.log(xy.innerHTML)
+	}
+	
+	
+	//숫자 확인 함수
+	function check_num() {
+		var num = this.innerHTML
+		//$("#lv1").attr("?", num)
+		
+		num = parseInt(num)  //문자를 숫자로 변환
+		var x1 = Math.floor(num/10) +1
+		var y1 = num%10 +1
+		
+		var dist = Math.sqrt((Math.pow(x-com_numx,2) + Math.pow(y-com_numy,2)))
+		dist = Math.round(dist)
+		
+		var msg = "";
+		
+		//var value = $("#buttons").val()
+		
+		//if ($("#buttons > button").click(check_num)) {
+		//	$("#buttons > button").attr("?", num)
+		//}
+		
+		if (dist != 0)
+			msg = "틀렸습니다"
+		else {
+			msg = "정답입니다"
+			$("#result").append("<br> 금광 찾음")
+		}
+			
+		$("#result").html("[" + dist + "]" + msg)
+		$(this).attr("disabled", true)
+		
+		if (dist == 0) {
+			reset_game(); //게임 초기화
+			$("#result").append("<br> 금광 찾음")
+		}
+			
+	return false;
+	}
+	
+	//이벤트 등록
+	$(function() {
+		var lev = $("input[name='level']:checked").val();
+		
+		if (lev == "1") {		
+			var buttons = $("#buttons")
+			for(let i=1; i<=100; i++) {
+				buttons.append("<button>"+"?"+"</button>") 
+			}
+		
+			//버튼 100개에 클릭 이벤트 등록
+			$("#buttons > button").click(check_num)		
+		}
+		
+		
+		$("input[name='level']").change(function() {
+			
+			var lev = $("input[name='level']:checked").val();
+			
+			if (lev == "2") {
+				$("#buttons").empty();
+				var buttons = $("#buttons")
+				for(let i=1; i<=125; i++) {
+					buttons.append("<button>"+"?"+"</button>") 
+				}
+			
+				//버튼 100개에 클릭 이벤트 등록
+				$("#buttons > button").click(check_num)	
+			}		
+		})
+	})
+	
+</script>
+</head>
+	
+<body>
+<form action = "girae">
+
+	<div id = "wrapper">
+		<h1>지뢰 찾기 게임</h1>
+		<p>지뢰를 찾아보세요</p>
+		<label><input type="radio" id="lv1" name="level" value="1" checked="checked"> 초급 </label>
+		<label><input type="radio" id="lv2" name="level" value="2"> 중급 </label>
+		<br><br>
+		<div id="result"></div>
+		<div id="buttons"></div>
+	</div>
+</form>
+</body>
+</html>

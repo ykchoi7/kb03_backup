@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>지뢰 빨리 찾기 게임 만들기</title>
+<style type="text/css">
+	#wrapper { width:540px; margin:10px auto; }
+	#buttons > button { width:50px; height:50px; }
+</style>
+
+<script src="https://code.jquery.com/jquery-3.6.4.js" integrity="sha256-a9jBBRygX1Bh5lt8GZjXDzyOB+bWve9EiO7tROUtj/E=" crossorigin="anonymous"></script>
+<script type="text/javascript">
+
+	  var level = "beginner";
+      var numMines = 7;
+      var attempts = 0;
+      var remainingMines = numMines;
+      var mineLocations = [];
+
+    // 지뢰 심는 위치 선정
+    function generateMineLocations() {
+        var rows = (level === "beginner") ? 10 : 15;
+        var cols = (level === "beginner") ? 10 : 15;
+        var numMines = (level === "beginner") ? 7 : 12;
+
+        // 지뢰 위치 배열 리셋
+        mineLocations = [];
+
+		while (mineLocations.length < numMines) {
+          var row = Math.floor(Math.random() * rows);
+          var col = Math.floor(Math.random() * cols);
+          var location = row + "," + col;
+
+          if (mineLocations.indexOf(location) == -1) {
+            mineLocations.push(location);
+          }
+		  console.log(location)
+        }
+
+        // 각 지뢰 클릭할 때 주변에 숫자 1씩 증가
+        for (var i = 0; i < numMines; i++) {
+          var location = mineLocations[i].split(",");
+          var row = parseInt(location[0]);
+          var col = parseInt(location[1]);
+
+        
+          for (var r = row - 1; r <= row + 1; r++) {
+            for (var c = col - 1; c <= col + 1; c++) {
+              if (r >= 0 && r < rows && c >= 0 && c < cols) {
+                var location = r + "," + c;
+
+                if (mineLocations.indexOf(location) === -1) {
+                  var cell = $("#" + location);
+                  var value = parseInt(cell.text()) || 0;
+                  cell.text(value + 1);
+                }
+              }
+            }
+          }
+        }
+      }
+
+      // 남은 지뢰수 카운팅
+      function updateRemainingMines() {
+        $("#remaining-mines").text("Remaining number of mines: " + remainingMines);
+      }
+
+      // 버튼 클릭 핸들러
+    function handleClick(event) {
+		var cell = $(event.target);
+        var location = cell.attr("id");
+        attempts++;
+
+        // 지뢰면 !!!으로 표시하고 남은 횟수 차감
+        if (mineLocations.indexOf(location) !== -1) {
+          cell.text("!!!");
+          remainingMines--;
+          updateRemainingMines();
+
+		  //남은 횟수가 1보다 작으면 알림
+          if (remainingMines < 1) {
+            alert("모든 지뢰를 찾았습니다");
+          }
+        } else {
+          var value = cell.text();
+          cell.text(value == "?" ? "" : value);
+        }
+
+        $("#attempts").text("Number of attempts: " + attempts);
+	}
+	
+	//이벤트 등록
+	$(function() {
+		var lev = $("input[name='level']:checked").val();
+		
+		if (lev == "beginner") {		
+			var buttons = $("#buttons")
+			for(let i=1; i<=100; i++) {
+				buttons.append("<button>"+"?"+"</button>") 
+			}
+		
+			//버튼 100개에 클릭 이벤트 등록
+			$("#start").click(generateMineLocations)	
+			$("#buttons > button").click(handleClick)	
+		}
+		
+		
+		$("input[name='level']").change(function() {
+			
+			var lev = $("input[name='level']:checked").val();
+			
+			if (lev == "intermediate") {
+				$("#buttons").empty();
+				$("#mines").text("남은횟수 : 12");
+				var buttons = $("#buttons")
+				for(let i=1; i<=125; i++) {
+					buttons.append("<button>"+"?"+"</button>") 
+				}
+			
+				//버튼 100개에 클릭 이벤트 등록
+				$("#start").click(generateMineLocations)	
+				$("#buttons > button").click(handleClick)	
+			}		
+		})
+	})
+	
+</script>
+</head>
+	
+<body>
+	<div id = "wrapper">
+		<h1>지뢰 찾기 게임</h1>
+		<p>지뢰를 찾아보세요</p>
+		<label><input type="radio" id="lv1" name="level" value="beginner" checked="checked"> 초급 </label>
+		<label><input type="radio" id="lv2" name="level" value="intermediate" > 중급 </label>		
+		<button id="start">게임시작</button>
+		<div id="tries">시도횟수: 0</div>
+		<div id="mines">남은지뢰수: 7</div>
+		
+		<br><br>
+		<div id="board"></div>
+		<div id="result"></div>
+		<div id="buttons"></div>
+	</div>
+</body>
+</html>
