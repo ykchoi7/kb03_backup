@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<mapper namespace="config.BbsMapper">
+  <select id="selectAll" resultType="com.itskb.myapp.dto.BbsDto">
+    select * from customer order by name desc
+  </select>
+  <select id="selectOne" resultType="com.itskb.myapp.dto.BbsDto">
+    select * from customer where name = ${name}
+  </select>
+  <select id="count" resultType="int">
+    select count(*) from customer
+  </select>
+  <insert id="insert">
+    insert into customer(name, email, contact, pwd, pwd_re)
+    values(#{name}, #{email}, #{contact}, #{pwd}, #{pwd_re})
+  </insert>
+</mapper>

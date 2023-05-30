@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<mapper namespace="config.BbsMapper">
+  <select id="selectAll" resultType="com.multicampus.dto.BbsDto">
+    select * from Bbs order by no desc
+  </select>
+  <select id="selectOne" resultType="com.multicampus.dto.BbsDto">
+    select * from Bbs where no = ${no}
+  </select>
+  <select id="count" resultType="int">
+    select count(*) from Bbs
+  </select>
+  <insert id="insert">
+    insert into Bbs(no, title, writer_id, content, regdate)
+    values(bbs_seq.nextval, #{title}, #{writer_id}, #{content}, sysdate)
+  </insert>
+</mapper>

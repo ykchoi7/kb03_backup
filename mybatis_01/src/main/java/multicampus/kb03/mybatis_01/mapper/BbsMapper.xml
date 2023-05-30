@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "//mybatis.org/DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="multicampus.kb03.mybatis_01.mapper.BbsMapper">
+  
+	<select id="findAll" 
+		resultType="multicampus.kb03.mybatis_01.entity.Bbs">
+		select * from Bbs
+	</select>  
+	<select id="findOne" 
+		resultType="multicampus.kb03.mybatis_01.entity.Bbs">
+		select * from Bbs WHERE no = #{no}
+	</select>  
+  
+</mapper>

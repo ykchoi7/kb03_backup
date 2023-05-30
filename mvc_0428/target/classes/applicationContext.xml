@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans:beans xmlns="http://www.springframework.org/schema/mvc"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:beans="http://www.springframework.org/schema/beans"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/mvc https://www.springframework.org/schema/mvc/spring-mvc.xsd
+		http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context https://www.springframework.org/schema/context/spring-context.xsd">
+
+	<context:component-scan base-package="com.multicampus.mvc0428"></context:component-scan>
+	
+	<beans:bean id="ds" class="org.apache.commons.dbcp2.BasicDataSource" destroy-method="close">
+	    <beans:property name="driverClassName" value="oracle.jdbc.driver.OracleDriver"></beans:property>
+	    <beans:property name="url" value="jdbc:oracle:thin:@localhost:1521/XE"></beans:property>
+	    <beans:property name="username" value="spring02"></beans:property>
+	    <beans:property name="password" value="spring"></beans:property>
+	</beans:bean>
+	
+	<beans:bean id="jdbcTpl" class="org.springframework.jdbc.core.JdbcTemplate">
+		<beans:property name="dataSource" ref="ds"></beans:property>
+	</beans:bean>
+	
+	<!-- jdbctemplate과 sqlsessionfactory는 같은 기능이기 때문에 하나만 써도 된다 -->
+	
+	<beans:bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+		<beans:property name="dataSource" ref="ds" />
+		<!-- <property name="configLocation" value="classpath:/mybatis/mybatis-config.xml" /> -->
+		<beans:property name="mapperLocations" value="classpath:/mybatis/mybatis-mapper.xml" />
+	</beans:bean>
+	<beans:bean id="sqlSessoinTemplate" class="org.mybatis.spring.SqlSessionTemplate">
+		<beans:constructor-arg name="sqlSessionFactory" ref="sqlSessionFactory" />
+	</beans:bean>
+	
+</beans:beans>
